@@ -5,3 +5,9 @@
 
 - **Prediction Page**
 ![](ExpectedOutcome.png)
+
+- **Prediction Page**
+![](GoalsProbability.png)
+
+- **Simulation Page**
+![](ligSimülasyonu.png)
