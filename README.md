@@ -1,4 +1,4 @@
 # soccerAnalyticsDashboard
 
-**Home Page
+** Home Page
 ![](TableStats.png)
