@@ -10,10 +10,14 @@ gData = getData()
 soccer = soccerMetric()
 
 table = elo.getTableStats_().reset_index()
-wdfNew = gData.getFikstür(week = 34)
+#wdfNew = gData.getFikstür(week = 34)
 
 df = soccer.uptadeEloRating_().reset_index().set_index("Team")
 elo_dict = {team: col['EloRating']for team, col in df.iterrows()}
+
+def getFixtures(week):
+
+    return gData.getFikstür(week = week)
 
 # Maç simülasyonu fonksiyonu
 def simulate_match(elo_home, elo_away, home_advantage=65):
@@ -31,6 +35,8 @@ def simulate_match(elo_home, elo_away, home_advantage=65):
 
 # Sezon simülasyonu
 def simulate_season(puan_df, fikstur_df, elo_dict):
+
+    #fikstur_df = getFixtures(week=week)
     
     table = {row["Team"]: {"points": row["Point"], "gd": 0} for _, row in puan_df.iterrows()}
 
@@ -105,7 +111,7 @@ def calculate_team_outcomes(rank_distribution_df, puan_df, fikstur_df, elo_dict,
 
 def runExpectedOutcome(rank_distribution_df, puan_df, fikstur_df, elo_dict):
 
-    outcomes = calculate_team_outcomes(rank_distribution_df = rank_distribution_df, puan_df= puan_df, fikstur_df = fikstur_df,elo_dict = elo_dict, n_sim=10000)
+    outcomes = calculate_team_outcomes(rank_distribution_df = rank_distribution_df, puan_df= puan_df, fikstur_df = fikstur_df, elo_dict = elo_dict, n_sim=10000)
     outcomes = outcomes.rename_axis("Team", axis=0)
     
     return outcomes
